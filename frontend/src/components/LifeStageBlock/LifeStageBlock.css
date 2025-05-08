@@ -1,0 +1,13 @@
+.stage-block {
+  margin-bottom: 20px;
+}
+
+.stage-block h3 {
+  margin-bottom: 10px;
+}
+
+.week-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}

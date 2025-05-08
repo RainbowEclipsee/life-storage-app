@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f0f0f0;
+}
+
+.life-calendar {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}

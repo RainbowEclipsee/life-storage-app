@@ -1,4 +1,3 @@
-// src/components/WeekCircle.jsx
 import React from 'react';
 import './WeekCircle.css';
 

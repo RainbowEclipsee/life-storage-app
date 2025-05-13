@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setWeeks } from '../store/lifeSlice';
-import { generateWeeks } from '../utils/generateWeeks';
-import LifeStageBlock from '../components/LifeStageBlock/LifeStageBlock';
+import { setWeeks } from '../../store/lifeSlice';
+import { generateWeeks } from '../../utils/generateWeeks';
+import LifeStageBlock from '../../components/LifeStageBlock/LifeStageBlock';
 
 const LifeCalendar = () => {
   const dispatch = useDispatch();

@@ -1,34 +1,29 @@
-const WEEKS_IN_YEAR = 52;
+import { differenceInCalendarWeeks, eachWeekOfInterval, parseISO, isBefore, isAfter } from 'date-fns'
 
-// Этапы жизни с возрастными границами
-const lifeStages = [
-  { label: 'Неосознанное детство', from: 0, to: 4 },
-  { label: 'Детство', from: 4, to: 14 },
-  { label: 'Подростковый период', from: 14, to: 18 },
-  { label: 'Молодость', from: 18, to: 35 },
-  { label: 'Зрелость', from: 35, to: 60 },
-  { label: 'Старость', from: 60, to: Infinity },
-];
-
-// Функция, возвращающая массив всех недель
-export function generateWeeks(lifeExpectancy, currentAge) {
-  const totalWeeks = lifeExpectancy * WEEKS_IN_YEAR;
-  const weeks = [];
-
-  for (let i = 0; i < totalWeeks; i++) {
-    const age = i / WEEKS_IN_YEAR;
-    const week = {
-      id: i,
-      isPast: age < currentAge,
-      stage: getStageLabel(age),
-    };
-    weeks.push(week);
-  }
-
-  return weeks;
+const getLifeStage = (age) => {
+  if (age < 4) return 'Раннее детство'
+  if (age < 14) return 'Детство'
+  if (age < 18) return 'Подростковый возраст'
+  if (age < 35) return 'Молодость'
+  if (age < 60) return 'Зрелость'
+  return 'Старость'
 }
 
-function getStageLabel(age) {
-  const stage = lifeStages.find((stage) => age >= stage.from && age < stage.to);
-  return stage ? stage.label : 'Неизвестно';
+export const generateWeeks = ({ dateOfBirth, estimatedDeathDate, firstUsageDate }) => {
+  const start = parseISO(dateOfBirth)
+  const end = parseISO(estimatedDeathDate)
+  const firstUsage = parseISO(firstUsageDate)
+  const now = new Date()
+
+  const allWeeks = eachWeekOfInterval({ start, end })
+
+  return allWeeks.map((weekStartDate) => {
+    const ageAtThisWeek = differenceInCalendarWeeks(weekStartDate, start) / 52
+    return {
+      date: weekStartDate.toISOString().split('T')[0],
+      stage: getLifeStage(ageAtThisWeek),
+      isPast: isBefore(weekStartDate, now),
+      isFromUsage: isAfter(weekStartDate, firstUsage),
+    }
+  })
 }

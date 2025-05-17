@@ -5,10 +5,11 @@ import { generateWeeks } from '../../utils/generateWeeks'
 import LifeStageBlock from '../../components/LifeStageBlock/LifeStageBlock'
 
 const Celendar = () => {
-  const dispatch = useDispatch()
 
   const { dateOfBirth, estimatedDeathDate, firstUsageDate } = useSelector((state) => state.profile)
   const { weeks } = useSelector((state) => state.life)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (dateOfBirth && estimatedDeathDate && firstUsageDate) {

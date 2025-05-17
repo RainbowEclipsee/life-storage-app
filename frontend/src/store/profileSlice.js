@@ -18,8 +18,7 @@ const profileSlice = createSlice({
   initialState,
   reducers: {
     setProfileData: (state, action) => {
-      const { name, dateOfBirth, estimatedDeathDate, sex, country } =
-        action.payload
+      const { name, dateOfBirth, estimatedDeathDate, sex, country } = action.payload
       state.name = name
       state.dateOfBirth = dateOfBirth
       state.estimatedDeathDate = estimatedDeathDate

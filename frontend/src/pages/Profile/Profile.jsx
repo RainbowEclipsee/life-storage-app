@@ -16,6 +16,8 @@ const Profile = () => {
     country: '',
   })
 
+  const [isEditing, setIsEditing] = useState(false)
+
   useEffect(() => {
     setForm({
       name: profile.name || '',
@@ -31,12 +33,22 @@ const Profile = () => {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
+  const handleEdit = () => {
+    setIsEditing(true)
+  }
+  
   const handleSave = () => {
     dispatch(setProfileData(form))
-    
+    setIsEditing(false)
   }
   const handleClear = () => {
     dispatch(clearProfile())
+    setIsEditing(false)
+  }
+
+  const handleCancelEdit = () => {
+    setForm(profile)
+    setIsEditing(false)
   }
 
   return (
@@ -52,6 +64,7 @@ const Profile = () => {
             name="name"
             value={form.name}
             onChange={handleChange}
+            disabled={!isEditing}
           />
         </div>
 
@@ -63,6 +76,7 @@ const Profile = () => {
             name="dateOfBirth"
             value={form.dateOfBirth}
             onChange={handleChange}
+            disabled={!isEditing}
           />
         </div>
 
@@ -74,6 +88,7 @@ const Profile = () => {
             name="estimatedDeathDate"
             value={form.estimatedDeathDate}
             onChange={handleChange}
+            disabled={!isEditing}
           />
         </div>
 
@@ -85,6 +100,7 @@ const Profile = () => {
             name="sex"
             value={form.sex}
             onChange={handleChange}
+            disabled={!isEditing}
           />
         </div>
 
@@ -96,14 +112,21 @@ const Profile = () => {
             name="country"
             value={form.country}
             onChange={handleChange}
+            disabled={!isEditing}
           />
         </div>
       </div>
 
       <div className="button_container">
-        <Button btnName="Редактировать" />
-        <Button btnName="Сохранить изменения" onClick={handleSave} />
-        <Button btnName="Очистить данные" onClick={handleClear} />
+        {!isEditing ? (
+          <Button btnName="Редактировать" onClick={handleEdit} />
+        ) : (
+          <div>
+            <Button btnName="Сохранить изменения" onClick={handleSave} />
+            <Button btnName="Отменить сохранение изменений" onClick={handleCancelEdit}/>
+            <Button btnName="Очистить данные" onClick={handleClear} />
+          </div>
+        )}
       </div>
     </div>
   )

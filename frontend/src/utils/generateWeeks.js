@@ -1,4 +1,4 @@
-import { differenceInCalendarWeeks, eachWeekOfInterval, parseISO, isBefore, isAfter } from 'date-fns'
+import { differenceInCalendarWeeks, eachWeekOfInterval, parseISO, isBefore, isAfter, addDays } from 'date-fns'
 
 const getLifeStage = (age) => {
   if (age < 4) return 'Раннее детство'
@@ -17,13 +17,16 @@ export const generateWeeks = ({ dateOfBirth, estimatedDeathDate, firstUsageDate 
 
   const allWeeks = eachWeekOfInterval({ start, end })
 
-  return allWeeks.map((weekStartDate) => {
+  return allWeeks.map((weekStartDate, index) => {
     const ageAtThisWeek = differenceInCalendarWeeks(weekStartDate, start) / 52
-    return {
-      date: weekStartDate.toISOString().split('T')[0],
-      stage: getLifeStage(ageAtThisWeek),
-      isPast: isBefore(weekStartDate, now),
-      isFromUsage: isAfter(weekStartDate, firstUsage),
-    }
-  })
+
+  return {
+    id: index,
+    startDate: weekStartDate.toISOString(), 
+    endDate: addDays(weekStartDate, 6).toISOString(),
+    stage: getLifeStage(ageAtThisWeek),
+    isPast: isBefore(weekStartDate, now),
+    isFromUsage: isAfter(weekStartDate, firstUsage),
+  }
+})
 }

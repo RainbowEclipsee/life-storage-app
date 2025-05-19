@@ -24,6 +24,7 @@ const profileSlice = createSlice({
       state.estimatedDeathDate = estimatedDeathDate
       state.sex = sex
       state.country = country
+
       // Устанавливаем дату первого входа только если она ещё не была задана
       if (!state.firstUsageDate) {
         const today = new Date().toISOString().split('T')[0]
@@ -33,7 +34,6 @@ const profileSlice = createSlice({
       localStorage.setItem('profile', JSON.stringify(state))
     },
 
-    // ----- Не забыть реализовать позже в Profile
     clearProfile: (state) => {
       state.name = ''
       state.dateOfBirth = ''

@@ -8,6 +8,7 @@ const Profile = () => {
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.profile)
 
+  const [isEditing, setIsEditing] = useState(false)
   const [form, setForm] = useState({
     name: '',
     dateOfBirth: '',
@@ -16,16 +17,8 @@ const Profile = () => {
     country: '',
   })
 
-  const [isEditing, setIsEditing] = useState(false)
-
   useEffect(() => {
-    setForm({
-      name: profile.name || '',
-      dateOfBirth: profile.dateOfBirth || '',
-      estimatedDeathDate: profile.estimatedDeathDate || '',
-      sex: profile.sex || '',
-      country: profile.country || '',
-    })
+    setForm(profile)
   }, [profile])
 
   const handleChange = (e) => {
@@ -43,7 +36,14 @@ const Profile = () => {
   }
   const handleClear = () => {
     dispatch(clearProfile())
-    setIsEditing(false)
+    
+    setForm({
+      name: '',
+      dateOfBirth: '',
+      estimatedDeathDate: '',
+      sex: '',
+      country: '',
+    })
   }
 
   const handleCancelEdit = () => {
@@ -81,7 +81,7 @@ const Profile = () => {
         </div>
 
         <div className="input__container">
-          <label htmlFor="estimatedDeathDate">Предп. возраст жизни:</label>
+          <label htmlFor="estimatedDeathDate">Ожидаемый возраст жизни:</label>
           <input
             type="date"
             id="estimatedDeathDate"

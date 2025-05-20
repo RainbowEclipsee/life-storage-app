@@ -1,4 +1,4 @@
-import { differenceInCalendarWeeks, eachWeekOfInterval, parseISO, isBefore, isAfter, addDays } from 'date-fns'
+import { differenceInCalendarWeeks, eachWeekOfInterval, parseISO, isBefore, isAfter, addDays, startOfWeek } from 'date-fns'
 
 const getLifeStage = (age) => {
   if (age < 4) return 'Раннее детство'
@@ -10,12 +10,17 @@ const getLifeStage = (age) => {
 }
 
 export const generateWeeks = ({ dateOfBirth, estimatedDeathDate, firstUsageDate }) => {
-  const start = parseISO(dateOfBirth)
+  const engWeekStart = parseISO(dateOfBirth)
   const end = parseISO(estimatedDeathDate)
   const firstUsage = parseISO(firstUsageDate)
   const now = new Date()
 
-  const allWeeks = eachWeekOfInterval({ start, end })
+  // Приводим дату рождения к ближайшему предыдущему понедельнику.
+  // Потому что считает по американскому календарю (вместо индекса 0 устанавливаем 1)
+  const start = startOfWeek(engWeekStart, { weekStartsOn: 1 })
+
+  // Генерируем недели с понедельника
+  const allWeeks = eachWeekOfInterval({ start, end }, { weekStartsOn: 1 })
 
   return allWeeks.map((weekStartDate, index) => {
     const ageAtThisWeek = differenceInCalendarWeeks(weekStartDate, start) / 52

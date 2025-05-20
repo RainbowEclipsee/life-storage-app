@@ -1,8 +1,9 @@
 import React from 'react'
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
-import './WeekCircle.css'
 import { format } from 'date-fns'
+
+import './WeekCircle.css'
 
 const WeekCircle = ({ isPast, startDate, endDate }) => {
   const tooltipId = `tooltip-${startDate}`
@@ -13,9 +14,7 @@ const WeekCircle = ({ isPast, startDate, endDate }) => {
       <div
         id={tooltipId}
         className="week-circle"
-        style={{
-          backgroundColor: isPast ? '#555' : '#ddd',
-        }}
+        style={{backgroundColor: isPast ? '#555' : '#ddd'}}
       />
       <Tooltip
         anchorId={tooltipId}

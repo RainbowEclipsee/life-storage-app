@@ -1,4 +1,4 @@
-const Week = () => {
+const WeekDetail = () => {
   return (
     <div>
       <div>Понедельник</div>
@@ -12,4 +12,4 @@ const Week = () => {
   )
 }
 
-export default Week
+export default WeekDetail

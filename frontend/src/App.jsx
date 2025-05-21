@@ -6,6 +6,8 @@ import Footer from './components/Footer/Footer'
 
 import Calendar from './pages/Calendar/Calendar'
 import Profile from './pages/Profile/Profile'
+import WeekDetail from './pages/WeekDetail/WeekDetail';
+
 
 import './App.css'
 
@@ -18,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Calendar />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/week/:startDate" element={<WeekDetail />} />
           </Routes>
         </main>
         <Footer />

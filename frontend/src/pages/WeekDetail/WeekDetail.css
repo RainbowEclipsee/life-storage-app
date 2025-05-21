@@ -1,0 +1,33 @@
+.week-detail { padding: 1rem; }
+
+.day-card {
+  flex: 1 1 calc(33% - 1rem);
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.day-card textarea {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 0.5rem;
+}
+.mood-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.buttons {
+  margin-top: 1rem;
+}
+.btn-save {
+  background: #4caf50; color: white; padding: 0.5rem 1rem; margin-right: 0.5rem;
+}
+.btn-cancel {
+  background: #f44336; color: white; padding: 0.5rem 1rem;
+}

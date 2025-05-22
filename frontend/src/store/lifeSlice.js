@@ -5,7 +5,7 @@ const WEEKS_IN_YEAR = 52;
 const initialState = {
   age: 28,
   lifeExpectancy: 80,
-  weeks: [], // сюда мы положим данные позже
+  weeks: [],
 };
 
 const lifeSlice = createSlice({

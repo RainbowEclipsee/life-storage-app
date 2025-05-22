@@ -7,7 +7,7 @@ import './WeekDetail.css'
 
 const dayNames = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье']
 
-export default function WeekDetail() {
+const WeekDetail = () => {
   const { startDate } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -45,10 +45,7 @@ export default function WeekDetail() {
   }
 
   const handleCancel = () => {
-    if (stored) setWeek(stored)
-    else {
       navigate('/')
-    }
   }
 
   const monday = parseISO(startDate)
@@ -90,3 +87,5 @@ export default function WeekDetail() {
     </div>
   )
 }
+
+export default WeekDetail

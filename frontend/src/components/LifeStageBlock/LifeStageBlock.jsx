@@ -13,6 +13,7 @@ const LifeStageBlock = ({ title, weeks }) => {
             isPast={week.isPast}
             startDate={week.startDate}
             endDate={week.endDate}
+            averageMoodColor={week.averageMoodColor}
           />
         ))}
       </div>
@@ -20,4 +21,4 @@ const LifeStageBlock = ({ title, weeks }) => {
   )
 }
 
-export default LifeStageBlock
+export default React.memo(LifeStageBlock)

@@ -32,9 +32,11 @@
   background-color: #f0f0f0;
 }
 
-.button_container {
+.button__container {
   display: flex;
   justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 600px) {

@@ -1,33 +1,103 @@
-.week-detail { padding: 1rem; }
+.week-detail {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+}
+
+.week-detail__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.week-detail__header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.week-detail__dates {
+  font-weight: normal;
+  color: #555;
+}
+
+.week-detail__buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.week-detail__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 
 .day-card {
-  flex: 1 1 calc(33% - 1rem);
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  border-radius: 4px;
+  flex: 1 1 calc(33.333% - 1rem);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.day-header {
+
+.day-card__header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: #333;
 }
-.day-card textarea {
-  width: 100%;
-  height: 60px;
-  margin-bottom: 0.5rem;
+
+.day-card__note {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 0.75rem;
 }
-.mood-control {
+
+.day-card__mood {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: space-between;
 }
-.buttons {
-  margin-top: 1rem;
+
+.mood-label {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
 }
-.btn-save {
-  background: #4caf50; color: white; padding: 0.5rem 1rem; margin-right: 0.5rem;
+
+.mood-select {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-.btn-cancel {
-  background: #f44336; color: white; padding: 0.5rem 1rem;
+
+
+@media (max-width: 768px) {
+  .day-card {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .week-detail__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .week-detail__buttons {
+    margin-top: 1rem;
+  }
+  .day-card {
+    flex: 1 1 100%;
+  }
 }

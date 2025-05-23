@@ -117,13 +117,13 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="button_container">
+      <div className="button__container">
         {!isEditing ? (
           <Button btnName="Редактировать" onClick={handleEdit} />
         ) : (
-          <div>
+          <div className="button__container">
             <Button btnName="Сохранить изменения" onClick={handleSave} />
-            <Button btnName="Отменить сохранение изменений" onClick={handleCancelEdit}/>
+            <Button btnName="Отменить сохранение" onClick={handleCancelEdit}/>
             <Button btnName="Очистить данные" onClick={handleClear} />
           </div>
         )}

@@ -1,5 +1,4 @@
 // Модуль для расчета цвета исходя из оценки настроения 
-
 export function getColorByMood(mood) {
   switch (mood) {
     case 1:

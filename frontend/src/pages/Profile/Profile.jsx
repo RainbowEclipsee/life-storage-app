@@ -36,14 +36,8 @@ const Profile = () => {
   }
   const handleClear = () => {
     dispatch(clearProfile())
-    
-    setForm({
-      name: '',
-      dateOfBirth: '',
-      estimatedDeathDate: '',
-      sex: '',
-      country: '',
-    })
+
+    window.location.reload()
   }
 
   const handleCancelEdit = () => {
@@ -65,6 +59,7 @@ const Profile = () => {
             value={form.name}
             onChange={handleChange}
             disabled={!isEditing}
+            placeholder='Укажите имя'
           />
         </div>
 
@@ -101,6 +96,7 @@ const Profile = () => {
             value={form.sex}
             onChange={handleChange}
             disabled={!isEditing}
+            placeholder='Укажите пол'
           />
         </div>
 
@@ -113,6 +109,7 @@ const Profile = () => {
             value={form.country}
             onChange={handleChange}
             disabled={!isEditing}
+            placeholder='Страна проживания'
           />
         </div>
       </div>

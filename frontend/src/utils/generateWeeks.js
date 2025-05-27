@@ -5,9 +5,10 @@ import {
   isBefore, 
   isAfter, 
   addDays, 
-  startOfWeek 
+  startOfWeek,
+  format,
 } from 'date-fns'
-// import { ru } from 'date-fns/locale';
+import { ru } from 'date-fns/locale';
 
 
 const getLifeStage = (age) => {
@@ -20,26 +21,25 @@ const getLifeStage = (age) => {
 }
 
 export const generateWeeks = ({ dateOfBirth, estimatedDeathDate, firstUsageDate }) => {
-  const engWeekStart = parseISO(dateOfBirth)
-  const end = parseISO(estimatedDeathDate)
+  const birthDate = parseISO(dateOfBirth)
+  const endDate = parseISO(estimatedDeathDate)
   const firstUsage = parseISO(firstUsageDate)
   const now = new Date()
 
-  // Приводим дату рождения к ближайшему предыдущему понедельнику.
-  // Потому что считает по американскому календарю
-  const start = startOfWeek(engWeekStart, { weekStartsOn: 1 })
-  // const start = startOfWeek(engWeekStart, {locale: ru})
+  // Начало жизни: понедельник (русская локаль) 
+  // TODO - добавить смену формата исчисление календаря под eng (исходя из выбора языковой темы ru / eng)
+  const start = startOfWeek(birthDate, { locale: ru })
 
-  // Генерируем недели с понедельника
-  const allWeeks = eachWeekOfInterval({ start, end }, { weekStartsOn: 1 })
-  // const allWeeks = eachWeekOfInterval({ start, end }, {locale: ru})
+  const allWeeks = eachWeekOfInterval({ start, end: endDate }, { locale: ru })
 
   return allWeeks.map((weekStartDate, index) => {
     const ageAtThisWeek = differenceInCalendarWeeks(weekStartDate, start) / 52
+    const weekStartKey = format(weekStartDate, 'yyyy-MM-dd')
+    const weekEndKey = format(addDays(weekStartDate, 6), 'yyyy-MM-dd')
     return {
       id: index,
-      startDate: weekStartDate.toISOString(), 
-      endDate: addDays(weekStartDate, 6).toISOString(),
+      startDate: weekStartKey, 
+      endDate: weekEndKey,
       stage: getLifeStage(ageAtThisWeek),
       isPast: isBefore(weekStartDate, now),
       isFromUsage: isAfter(weekStartDate, firstUsage),

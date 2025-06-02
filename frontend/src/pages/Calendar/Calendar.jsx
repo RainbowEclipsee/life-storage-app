@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react'
+import { useRenderReady } from '../../hooks/useRenderReady'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { setWeeks } from '../../store/lifeSlice'
 import { generateWeeks } from '../../utils/generateWeeks'
 import { getAverageMoodColor } from '../../utils/getColorByMood'
+
 import LifeStageBlock from '../../components/LifeStageBlock/LifeStageBlock'
+import Spinner from '../../components/Spinner/Spinner'
+
 
 const Calendar = () => {
 
@@ -12,6 +17,8 @@ const Calendar = () => {
   const weekDetails = useSelector((state) => state.weekDetails)
 
   const dispatch = useDispatch()
+
+  const isReady = useRenderReady(weeks.length > 0)
 
   useEffect(() => {
     if (dateOfBirth && estimatedDeathDate && firstUsageDate) {
@@ -23,6 +30,15 @@ const Calendar = () => {
       dispatch(setWeeks(generated))
     }
   }, [dispatch, dateOfBirth, estimatedDeathDate, firstUsageDate])
+
+  
+  if(!isReady){
+    return(
+      <div>
+        <Spinner strInfo={'жизнь'}/>
+      </div>
+    )
+  }
 
   // Группировка недель по стадиям жизни
   const grouped = weeks.reduce((acc, week) => {

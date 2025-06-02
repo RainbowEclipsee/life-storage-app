@@ -1,4 +1,3 @@
-// src/pages/WeekDetail/WeekDetail.js
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,6 +7,8 @@ import { ru } from 'date-fns/locale'
 import Button from '../../components/Button/Button'
 
 import './WeekDetail.css'
+import { useRenderReady } from '../../hooks/useRenderReady'
+import Spinner from '../../components/Spinner/Spinner'
 
 const dayNames = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье']
 
@@ -16,6 +17,8 @@ const WeekDetail = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const stored = useSelector((state) => selectWeekData(state, startDate))
+
+  const isReady = useRenderReady(true)
 
   // Начало недели (понедельник) с учётом русской локали
   const paramDate = parseISO(startDate)
@@ -36,6 +39,14 @@ const WeekDetail = () => {
   useEffect(() => {
     if (stored) setWeek(stored)
   }, [stored])
+
+  if(!isReady){
+    return(
+      <div>
+        <Spinner strInfo={'неделю'}/>
+      </div>
+    )
+  }
 
   const handleChange = (date, field, value) => {
     setWeek((prev) => ({

@@ -16,6 +16,6 @@ export const  useRenderReady = (condition) => {
           })
         }
       }, [condition])
-      
+
       return isReady
 }

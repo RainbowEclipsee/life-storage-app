@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useRenderReady } from '../../hooks/useRenderReady'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +11,6 @@ import Spinner from '../../components/Spinner/Spinner'
 
 
 const Calendar = () => {
-
   const { dateOfBirth, estimatedDeathDate, firstUsageDate } = useSelector((state) => state.profile)
   const weeks = useSelector((state) => state.life.weeks)
   const weekDetails = useSelector((state) => state.weekDetails)
@@ -31,36 +30,31 @@ const Calendar = () => {
     }
   }, [dispatch, dateOfBirth, estimatedDeathDate, firstUsageDate])
 
-  
-  if(!isReady){
-    return(
-      <div>
-        <Spinner strInfo={'жизнь'}/>
-      </div>
-    )
-  }
-
   // Группировка недель по стадиям жизни
-  const grouped = weeks.reduce((acc, week) => {
-    const stage = week.stage
+  const grouped = useMemo(() => {
+    return weeks.reduce((acc, week) => {
+      const stage = week.stage
+  
+      if (!acc[week.stage]) 
+        acc[week.stage] = []
+  
+      // формат ключа: YYYY-MM-DD
+      const key = week.startDate.slice(0, 10)
+      const weekData = weekDetails[key]
+      const averageMoodColor = getAverageMoodColor(weekData)
+  
+      acc[stage].push({...week, averageMoodColor,})
+      return acc
+    }, {})
+  }, [weeks, weekDetails])
 
-    if (!acc[week.stage]) 
-      acc[week.stage] = []
-
-    // формат ключа: YYYY-MM-DD
-    const key = week.startDate.slice(0, 10)
-    const weekData = weekDetails[key]
-    const averageMoodColor = getAverageMoodColor(weekData)
-
-    acc[stage].push({...week, averageMoodColor,})
-    return acc
-  }, {})
 
   return (
     <div className="life-calendar">
-      {Object.entries(grouped).map(([stage, weeks]) => (
-        <LifeStageBlock key={stage} title={stage} weeks={weeks} />
-      ))}
+      {!isReady ? (<Spinner strInfo={'жизнь'}/>
+        ) : (
+          Object.entries(grouped).map(([stage, weeks]) => (
+          <LifeStageBlock key={stage} title={stage} weeks={weeks} />)))}
     </div>
   )
 }

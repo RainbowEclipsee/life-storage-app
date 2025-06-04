@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setProfileData, clearProfile } from '../../store/profileSlice'
 import Button from '../../components/Button/Button'
@@ -10,16 +10,25 @@ const Profile = () => {
 
   const [isEditing, setIsEditing] = useState(false)
   const [form, setForm] = useState({
-    name: '',
-    dateOfBirth: '',
-    estimatedDeathDate: '',
-    sex: '',
-    country: '',
+    name: profile.name,
+    dateOfBirth: profile.dateOfBirth,
+    estimatedDeathDate: profile.estimatedDeathDate,
+    sex: profile.sex,
+    country: profile.country,
   })
 
-  useEffect(() => {
-    setForm(profile)
-  }, [profile])
+  // TODO - Когда будет сервер вернуть:
+  // const [form, setForm] = useState({
+  //   name: '',
+  //   dateOfBirth: '',
+  //   estimatedDeathDate: '',
+  //   sex: '',
+  //   country: '',
+  // })
+  // useEffect(() => {
+  //   if(profile)
+  //     setForm(profile)
+  // }, [profile])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -36,7 +45,8 @@ const Profile = () => {
   }
   const handleClear = () => {
     dispatch(clearProfile())
-
+    
+    // TODO: Исправить т.к временное решение 
     window.location.reload()
   }
 

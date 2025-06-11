@@ -2,15 +2,15 @@
 export function getColorByMood(mood) {
   switch (mood) {
     case 1:
-      return '#ff4d4f'; // красный
+      return '#f5d20b'; // желтый
     case 2:
-      return '#ff7a45'; // оранжевый
+      return '#e4c30a'; // насыщенный жёлтый
     case 3:
-      return '#faad14'; // жёлтый
+      return '#b2c921'; // переходно зеленый
     case 4:
-      return '#a0d911'; // светло-зеленый
+      return '#7cb342'; // светло-зеленый
     case 5:
-      return '#52c41a'; // зелёный
+      return '#4caf50'; // зелёный
     default:
       return null;
   }

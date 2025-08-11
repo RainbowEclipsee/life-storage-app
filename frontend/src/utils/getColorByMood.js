@@ -1,6 +1,7 @@
 // Модуль для расчета цвета исходя из оценки настроения 
 export function getColorByMood(mood) {
   switch (mood) {
+    //TODO Начинать с красного
     case 1:
       return '#f5d20b'; // желтый
     case 2:

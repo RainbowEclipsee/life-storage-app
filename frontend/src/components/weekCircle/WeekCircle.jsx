@@ -30,6 +30,9 @@ const WeekCircle = ({ startDate, endDate, isPast, averageMoodColor }) => {
         // Из проблем - можно перейти по url к будущей неделе
         // style={{backgroundColor: bgColor, cursor: isPast ? 'pointer' : 'default',}}
         // onClick={isPast ? handleClick : null}
+
+        // TODO - Решение. Если неделя еще не наступила, но в ней заметка - 
+        // обводить круг, но нельзя редактировать Настроение внутри WeekDetail
       />
       <Tooltip anchorId={tooltipId} content={tooltipText} delayShow={0} delayHide={0} />
     </div>

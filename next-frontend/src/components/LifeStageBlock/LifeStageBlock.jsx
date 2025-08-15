@@ -2,7 +2,7 @@
 
 import React from 'react';
 import WeekCircle from '../weekCircle/WeekCircle';
-import './LifeStageBlock.module.css';
+import styles from './LifeStageBlock.module.css';
 
 const LifeStageBlock = ({ title, weeks }) => {
   return (

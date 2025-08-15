@@ -1,6 +1,6 @@
-import WeekDetailClient from '../../../components/WeekDetail/WeekDetailClient';
+import WeekDetail from '../../../components/WeekDetail/WeekDetail';
 
-export default function WeekDetailPage({ params }) {
-  const { startDate } = params;
-  return <WeekDetailClient startDate={startDate} />;
+export default async function WeekDetailPage({ params }) {
+  const { startDate } = await params;
+  return <WeekDetail startDate={startDate} />;
 }

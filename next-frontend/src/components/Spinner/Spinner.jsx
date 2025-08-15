@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import './Spinner.module.css';
+import styles from './Spinner.module.css';
 
 const Spinner = ({ strInfo = 'данные' }) => {
   return (

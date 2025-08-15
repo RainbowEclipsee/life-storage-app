@@ -13,7 +13,7 @@ import styles from './WeekDetail.module.css';
 
 const dayNames = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
 
-export default function WeekDetailClient({ startDate }) {
+export default function WeekDetail({ startDate }) {
   const router = useRouter();
   const dispatch = useDispatch();
 

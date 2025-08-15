@@ -1,0 +1,102 @@
+.weekDetail {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+}
+
+.weekDetail__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.weekDetail__header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.weekDetail__dates {
+  font-weight: normal;
+  color: #555;
+}
+
+.weekDetail__buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.weekDetail__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dayCard {
+  flex: 1 1 calc(33.333% - 1rem);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.dayCard__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.dayCard__note {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 0.75rem;
+}
+
+.dayCard__mood {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.moodLabel {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.moodSelect {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .dayCard {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .weekDetail__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .weekDetail__buttons {
+    margin-top: 1rem;
+  }
+  .dayCard {
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,13 @@
+
+.footerMain {
+  background-color: #f1f1f1;
+  padding: 1rem 2rem;
+  margin-top: auto;
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
+}
+
+.footerContainer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}

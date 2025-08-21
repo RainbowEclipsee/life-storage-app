@@ -1,0 +1,45 @@
+.filter {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 8px 0 12px 0;
+  flex-wrap: wrap;
+}
+.label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+}
+.dateInput {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.applyBtn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.clearBtn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+.status {
+  width: 100%;
+  color: #b00020;
+  font-size: 13px;
+  margin-top: 6px;
+}

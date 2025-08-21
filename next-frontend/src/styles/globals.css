@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   display: flex;
@@ -11,8 +12,8 @@ body {
 }
 
 .app {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -24,4 +25,25 @@ body {
   padding: 20px;
   max-width: 900px;
   margin: auto;
+}
+
+.week-dot--highlighted {
+  transform: scale(1.12);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16),
+    0 0 0 10px rgba(3, 168, 244, 0.763);
+  z-index: 1000;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.week-dot--highlighted:focus {
+  outline: 2px solid rgba(3, 169, 244, 0.18);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .week-dot--highlighted {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }
